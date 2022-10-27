@@ -16,6 +16,13 @@ function WhoAmI({name, surname, link}){
     )
 }
 
+const data = [
+    {name: 'Jo', salary: 800, increase: false},
+    {name: 'Mike', salary: 1000, increase: true},
+    {name: 'Nike', salary: 500, increase: true},
+    {name: 'Bob', salary: 1800, increase: false},
+]
+
 function App(){
     return (<div className = 'app'>
                 <AppInfo />
@@ -23,7 +30,7 @@ function App(){
                     <SearchPanel/>
                     <AppFilter/>
                 </div>
-                <EmployeesList/>
+                <EmployeesList data = {data}/>
                 <EmployeesAddForm/>
 
                 <WhoAmI name = 'Jo' surname= 'Smith' link = 'vk.com'/>
