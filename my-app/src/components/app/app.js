@@ -17,10 +17,10 @@ function WhoAmI({name, surname, link}){
 }
 
 const data = [
-    {name: 'Jo', salary: 800, increase: false},
-    {name: 'Mike', salary: 1000, increase: true},
-    {name: 'Nike', salary: 500, increase: true},
-    {name: 'Bob', salary: 1800, increase: false},
+    {name: 'Jo', salary: 800, increase: false, id: 1},
+    {name: 'Mike', salary: 1000, increase: true, id: 2},
+    {name: 'Nike', salary: 500, increase: true, id: 3},
+    {name: 'Bob', salary: 1800, increase: false, id: 4},
 ]
 
 function App(){
