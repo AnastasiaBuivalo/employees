@@ -1,5 +1,6 @@
-import './ employees-list-item.css'
 import {Component} from 'react'
+import './ employees-list-item.css'
+
 
 
 
@@ -26,7 +27,7 @@ class EmployeesListItem extends Component {
 
     render(){
         let classNames = "list-group-item d-flex justify-content-between";
-        const {name, salary, id} = this.props;
+        const {name, salary, id, onDelete} = this.props;
         const {increase, rise} = this.state;
         if (increase)
             classNames += ' increase';
@@ -44,7 +45,8 @@ class EmployeesListItem extends Component {
                     </button>
 
                     <button type="button"
-                            className="btn-trash btn-sm ">
+                            className="btn-trash btn-sm "
+                            onClick={onDelete}>
                         <i className="fas fa-trash"></i>
                     </button>
                     <i className="fas fa-star"></i>

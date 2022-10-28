@@ -47,26 +47,56 @@ class WhoAmI extends Component{
     }
 }
 
-const data = [
-    {name: 'Jo', salary: 800, id: 1},
-    {name: 'Mike', salary: 1000, id: 2},
-    {name: 'Nike', salary: 500, id: 3},
-    {name: 'Bob', salary: 1800, id: 4},
-]
+class App extends Component{
+    constructor(props){
+        super(props);
+        this.state ={
+            data: [
+                {name: 'Jo', salary: 800, id: 1},
+                {name: 'Mike', salary: 1000, id: 2},
+                {name: 'Nike', salary: 500, id: 3},
+                {name: 'Bob', salary: 1800, id: 4},
+            ],
+            maxId : 5
+        }
+    }
 
-function App(){
-    return (<div className = 'app'>
-                <AppInfo />
-                <div className='search-panel'>
-                    <SearchPanel/>
-                    <AppFilter/>
-                </div>
-                <EmployeesList data = {data}/>
-                <EmployeesAddForm/>
+    deleteItem = (id =>{
+        this.setState(({data})=>({
+            data: data.filter(item => item.id !== id)
+        }))
+        console.log(`${id} Delete`);
+        console.log(this.state.data);
+    })
 
-                <WhoAmI name = 'Jo' surname= 'Smith' link = 'vk.com'/>
-                <WhoAmI name = 'Mike' surname= 'Smith' link = 'facebook.com'/>
-            </div>)
-}
+    addItem = ((name, salary) =>{
+        const item = {
+            name:name, 
+            salary:salary,
+            id: this.state.maxId++
+        };
+        this.setState(({data}) => ({
+            data: [...data, item]
+        }))
+    })
+    render(){
+    return (
+        <div className = 'app'>
+            <AppInfo />
+            <div className='search-panel'>
+                <SearchPanel/>
+                <AppFilter/>
+            </div>
+            <EmployeesList 
+                data = {this.state.data}
+                onDelete = {this.deleteItem}/>
+            <EmployeesAddForm
+                onAdd = {this.addItem}/>
+
+            <WhoAmI name = 'Jo' surname= 'Smith' link = 'vk.com'/>
+            <WhoAmI name = 'Mike' surname= 'Smith' link = 'facebook.com'/>
+        </div>)}
+            
+};
 
 export default App;
