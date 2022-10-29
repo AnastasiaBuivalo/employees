@@ -40,7 +40,6 @@ class EmployeesAddForm extends Component {
     render(){
         const {name, salary} = this.state;
         let className = "form-control new-post-label";
-        console.log(className);
         return (
             <div className="app-add-form">
                 <h3>Добавьте нового сотрудника</h3>
