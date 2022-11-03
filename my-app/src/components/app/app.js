@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import AppInfo from '../app-info/app-info';
 import AppFilter from '../app-filter/app-filter';
 import SearchPanel from '../search-panel/search-panel'
@@ -45,6 +45,19 @@ class WhoAmI extends Component{
     
         )
     }
+}
+
+
+const DynamicGreating = (props) => {
+    return (
+        <div className={'mb-3 p-3 border border-' + props.color}>
+            {
+                React.Children.map(props.children, child => {
+                    return React.cloneElement(child, {className: 'shadow p-3 m-3 border rounded'})
+                })
+            }
+        </div>
+    )
 }
 
 class App extends Component{
@@ -151,6 +164,12 @@ class App extends Component{
                     onChangeSalary = {this.changeSalary}/>
                 <EmployeesAddForm
                     onAdd = {this.addItem}/>
+
+
+                <DynamicGreating color = {'primary'}>
+                    <h2>This wheel was hard</h2>
+                    <h2>Hello world!</h2>
+                </DynamicGreating>
 
                 <WhoAmI name = 'Jo' surname= 'Smith' link = 'vk.com'/>
                 <WhoAmI name = 'Mike' surname= 'Smith' link = 'facebook.com'/>
