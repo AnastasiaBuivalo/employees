@@ -60,6 +60,31 @@ const DynamicGreating = (props) => {
     )
 }
 
+const Message = (props)=>{
+    return (
+        <h2>The counter is {props.counter}</h2>
+    )
+}
+
+class Counter extends Component {
+    state = {
+        counter: 0
+    }
+
+    changeCounter = () =>{
+        this.setState(({counter}) =>({
+            counter: counter + 1
+        }))
+    }
+    render(){
+        return (<>
+            <button className={'btn btn-primary'}
+            onClick = {this.changeCounter}>click</button>
+            {this.props.render(this.state.counter)}
+        </>)
+    }
+}
+
 class App extends Component{
     constructor(props){
         super(props);
@@ -171,8 +196,13 @@ class App extends Component{
                     <h2>Hello world!</h2>
                 </DynamicGreating>
 
+                <Counter render = {counter => (
+                    <Message counter = {counter}/>
+                )}/>
+
                 <WhoAmI name = 'Jo' surname= 'Smith' link = 'vk.com'/>
                 <WhoAmI name = 'Mike' surname= 'Smith' link = 'facebook.com'/>
+
             </div>)
         }
             
